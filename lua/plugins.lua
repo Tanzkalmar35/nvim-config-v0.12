@@ -1,4 +1,3 @@
--- ~/.config/nvim-new/lua/plugins.lua
 vim.pack.add({
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/mason-org/mason.nvim" },
@@ -6,10 +5,20 @@ vim.pack.add({
     { src = "https://github.com/ellisonleao/gruvbox.nvim" },
     { src = "https://github.com/ibhagwan/fzf-lua" },
     { src = "https://github.com/tpope/vim-fugitive" },
+    { src = "https://github.com/m4xshen/autoclose.nvim" },
+    { src = "https://github.com/folke/flash.nvim" },
+	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 })
 
 require('gitsigns').setup({ signcolumn = false })
 require('mason').setup({})
+require('autoclose').setup({})
+require('flash').setup()
+require('nvim-treesitter.configs').setup({
+    ensure_installed = {"lua", "go", "rust", "java"},
+    highlight = {enable = true}
+})
 
 require('blink.cmp').setup({
     fuzzy = { implementation = 'prefer_rust_with_warning' },

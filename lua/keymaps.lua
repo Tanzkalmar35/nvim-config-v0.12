@@ -18,6 +18,7 @@ keymap("x", "y", [["+y]], s) -- Yank to the system clipboard in visual mode
 keymap("t", "<Esc>", "<C-\\><C-N>") -- Exit terminal mode
 -- Change directory to the current file's directory
 keymap("n", "<leader>cd", '<cmd>lua vim.fn.chdir(vim.fn.expand("%:p:h"))<CR>')
+keymap('n', '<leader>lf', vim.lsp.buf.format)
 
 local opts = { noremap = true, silent = true }
 keymap("n", "grd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts) -- Go to definition
@@ -29,3 +30,5 @@ keymap("n", "<leader>fg", '<cmd>FzfLua live_grep<CR>')
 
 keymap("n", "<leader>gs", '<cmd>Git<CR>', opts)
 keymap("n", "<leader>gp", '<cmd>Git push<CR>', opts)
+
+keymap("n", "s", function() require("flash").jump() end)

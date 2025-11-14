@@ -1,9 +1,17 @@
 {
   "plugins": {
+    "autoclose.nvim": {
+      "rev": "3f86702b54a861a17d7994b2e32a7c648cb12fb1",
+      "src": "https://github.com/m4xshen/autoclose.nvim"
+    },
     "blink.cmp": {
       "rev": "327fff91fe6af358e990be7be1ec8b78037d2138",
       "src": "https://github.com/saghen/blink.cmp",
       "version": "1.0.0 - 2.0.0"
+    },
+    "flash.nvim": {
+      "rev": "fcea7ff883235d9024dc41e638f164a450c14ca2",
+      "src": "https://github.com/folke/flash.nvim"
     },
     "fzf-lua": {
       "rev": "9fa87eab38e74763d0a86475a62a14e95e901427",
@@ -20,6 +28,14 @@
     "mason.nvim": {
       "rev": "57e5a8addb8c71fb063ee4acda466c7cf6ad2800",
       "src": "https://github.com/mason-org/mason.nvim"
+    },
+    "nvim-treesitter": {
+      "rev": "42fc28ba918343ebfd5565147a42a26580579482",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+    },
+    "nvim-web-devicons": {
+      "rev": "8dcb311b0c92d460fac00eac706abd43d94d68af",
+      "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "vim-fugitive": {
       "rev": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4",

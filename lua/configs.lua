@@ -1,5 +1,5 @@
 local opt = vim.opt
-opt.colorcolumn = "80" -- Highlight column 80
+opt.colorcolumn = "120" -- Highlight column 120
 opt.signcolumn = "yes:1" -- Always show sign column
 opt.termguicolors = true -- Enable true colors
 opt.ignorecase = true -- Ignore case in search
