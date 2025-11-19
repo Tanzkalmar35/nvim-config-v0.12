@@ -129,13 +129,6 @@ vim.api.nvim_create_autocmd("FileType", {
                     vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
                 end
 
-                -- Standard LSP maps
-                map("n", "gd", vim.lsp.buf.definition, "Go to Definition")
-                map("n", "gr", vim.lsp.buf.references, "Go to References")
-                map("n", "gi", vim.lsp.buf.implementation, "Go to Implementation")
-                map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
-                map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
-
                 -- Java-specific refactoring maps
                 map("n", "<leader>jo", jdtls.organize_imports, "Organize Imports")
                 map("n", "<leader>jev", jdtls.extract_variable, "Extract Variable")

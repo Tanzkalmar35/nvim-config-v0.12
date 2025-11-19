@@ -55,3 +55,22 @@ vim.api.nvim_create_autocmd("FileType", {
         map("n", "<leader>fo", cmd, { buffer = ev.buf })
     end,
 })
+
+-- Diese Gruppe verhindert, dass Autocmds doppelt angelegt werden
+local lsp_attach_group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = lsp_attach_group,
+    callback = function(event)
+        -- Hilfsfunktion für Buffer-lokale Mappings
+        local map = function(mode, lhs, rhs, desc)
+            vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
+        end
+
+        map("n", "gd", vim.lsp.buf.definition, "Go to Definition")
+        map("n", "gr", vim.lsp.buf.references, "Go to References")
+        map("n", "gi", vim.lsp.buf.implementation, "Go to Implementation")
+        map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
+        map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
+    end,
+})
