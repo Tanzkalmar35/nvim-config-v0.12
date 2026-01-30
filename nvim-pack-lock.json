@@ -25,6 +25,10 @@
       "rev": "5e0a460d8e0f7f669c158dedd5f9ae2bcac31437",
       "src": "https://github.com/ellisonleao/gruvbox.nvim"
     },
+    "markdown-table-mode.nvim": {
+      "rev": "bb1ea9b76c1b29e15e14806fdfbb2319df5c06f1",
+      "src": "https://github.com/Kicamon/markdown-table-mode.nvim"
+    },
     "mason.nvim": {
       "rev": "57e5a8addb8c71fb063ee4acda466c7cf6ad2800",
       "src": "https://github.com/mason-org/mason.nvim"

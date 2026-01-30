@@ -1,7 +1,7 @@
 vim.pack.add({
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/mason-org/mason.nvim" },
-    { src = "https://github.com/saghen/blink.cmp",               version = vim.version.range("^1") },
+    { src = "https://github.com/saghen/blink.cmp",                version = vim.version.range("^1") },
     { src = "https://github.com/ellisonleao/gruvbox.nvim" },
     { src = "https://github.com/ibhagwan/fzf-lua" },
     { src = "https://github.com/tpope/vim-fugitive" },
@@ -13,6 +13,7 @@ vim.pack.add({
     { src = "https://github.com/kkoomen/vim-doge" },
     { src = "https://github.com/kevinhwang91/nvim-ufo" },
     { src = "https://github.com/kevinhwang91/promise-async" },
+    { src = "https://github.com/Kicamon/markdown-table-mode.nvim" },
 })
 
 require('gitsigns').setup({ signcolumn = false })
@@ -23,6 +24,7 @@ require('mason').setup({
 })
 require('autoclose').setup({})
 require('flash').setup()
+require('markdown-table-mode').setup()
 require('nvim-treesitter.configs').setup({
     ensure_installed = { "lua", "go", "rust", "java" },
     highlight = { enable = true }
@@ -138,26 +140,18 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- ### nvim-ufo Konfiguration ###
+-- ### nvim-ufo config ###
 
--- Globale Faltungseinstellungen
-vim.o.foldcolumn = "1" -- Zeigt eine Spalte für Faltungen an
-vim.o.foldlevel = 99   -- Standardmäßig alle Faltungen offen
-vim.o.foldlevelstart = 99 -- Beim Öffnen einer Datei alle Faltungen offen
-vim.o.foldenable = true  -- Faltungen aktivieren
+vim.o.foldcolumn = "1"
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
--- Wichtige Tastenbelegungen für UFO
--- 'zR' öffnet alle Faltungen, 'zM' schließt alle Faltungen
 vim.keymap.set("n", "zR", require("ufo").openAllFolds)
 vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 
--- UFO-Setup
 require("ufo").setup({
-    -- Sag UFO, es soll Treesitter für Faltungen verwenden.
-    -- Wenn Treesitter nicht verfügbar ist, soll es Einrückungen (indent) als Fallback nutzen.
     provider_selector = function(bufnr, filetype, buftype)
         return { "treesitter", "indent" }
     end
 })
-
--- ### Ende nvim-ufo ###
