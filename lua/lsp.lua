@@ -7,6 +7,7 @@ vim.lsp.enable({
   "pyright",
   "ts_ls",
   "rust-analyzer",
+  "ocamllsp",
   "yamlls",
 })
 vim.diagnostic.config({ virtual_text = true })

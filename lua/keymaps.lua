@@ -23,10 +23,14 @@ keymap('n', '<leader>lf', vim.lsp.buf.format)
 local opts = { noremap = true, silent = true }
 keymap("n", "grd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts) -- Go to definition
 
-keymap("n", "<leader>e", "<cmd>Ex %:p:h<CR>")
+keymap("n", "<leader>e", "<cmd>Oil<CR>")
 
 keymap("n", "<leader>ff", '<cmd>FzfLua files<CR>')
 keymap("n", "<leader>fg", '<cmd>FzfLua live_grep<CR>')
+keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
+keymap("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", opts)
+keymap("n", "<leader>gh", "<cmd>DiffviewFileHistory %<CR>", opts)
+keymap("n", "<leader>gH", "<cmd>DiffviewFileHistory<CR>", opts)
 
 keymap("n", "<leader>gs", '<cmd>Git<CR>', opts)
 keymap("n", "<leader>gp", '<cmd>Git push<CR>', opts)

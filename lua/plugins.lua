@@ -1,8 +1,9 @@
 vim.pack.add({
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/mason-org/mason.nvim" },
-    { src = "https://github.com/saghen/blink.cmp",               version = vim.version.range("^1") },
+    { src = "https://github.com/saghen/blink.cmp",                version = vim.version.range("^1") },
     { src = "https://github.com/ellisonleao/gruvbox.nvim" },
+    { src = "https://github.com/shaunsingh/nord.nvim" },
     { src = "https://github.com/ibhagwan/fzf-lua" },
     { src = "https://github.com/tpope/vim-fugitive" },
     { src = "https://github.com/m4xshen/autoclose.nvim" },
@@ -13,8 +14,14 @@ vim.pack.add({
     { src = "https://github.com/kkoomen/vim-doge" },
     { src = "https://github.com/kevinhwang91/nvim-ufo" },
     { src = "https://github.com/kevinhwang91/promise-async" },
+    { src = "https://github.com/folke/which-key.nvim" },
+    { src = "https://github.com/Tanzkalmar35/JustSyncNvimAdapter" },
+    { src = "https://github.com/stevearc/oil.nvim" },
+    { src = "https://github.com/sindrets/diffview.nvim" },
+    { src = "https://github.com/nvim-lua/plenary.nvim" },
 })
 
+require('oil').setup()
 require('gitsigns').setup({ signcolumn = false })
 require('mason').setup({
     ensure_installed = {
@@ -138,26 +145,28 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- ### nvim-ufo Konfiguration ###
+-- ### nvim-ufo Configs ###
 
--- Globale Faltungseinstellungen
-vim.o.foldcolumn = "1" -- Zeigt eine Spalte für Faltungen an
-vim.o.foldlevel = 99   -- Standardmäßig alle Faltungen offen
-vim.o.foldlevelstart = 99 -- Beim Öffnen einer Datei alle Faltungen offen
-vim.o.foldenable = true  -- Faltungen aktivieren
+vim.o.foldcolumn = "1"
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
--- Wichtige Tastenbelegungen für UFO
--- 'zR' öffnet alle Faltungen, 'zM' schließt alle Faltungen
 vim.keymap.set("n", "zR", require("ufo").openAllFolds)
 vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 
--- UFO-Setup
+-- UFO setup
 require("ufo").setup({
-    -- Sag UFO, es soll Treesitter für Faltungen verwenden.
-    -- Wenn Treesitter nicht verfügbar ist, soll es Einrückungen (indent) als Fallback nutzen.
+    -- Tell UFO to use treesitter folds
     provider_selector = function(bufnr, filetype, buftype)
         return { "treesitter", "indent" }
     end
 })
 
--- ### Ende nvim-ufo ###
+-- ### JustSync config
+
+require("JustSyncNvimAdapter").setup({
+    -- Just use global
+    cmd_path = "JustSync",
+    log_level = vim.log.levels.INFO
+})
