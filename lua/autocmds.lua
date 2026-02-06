@@ -62,7 +62,9 @@ local lsp_attach_group = vim.api.nvim_create_augroup("UserLspConfig", { clear = 
 vim.api.nvim_create_autocmd("LspAttach", {
     group = lsp_attach_group,
     callback = function(event)
-        -- Hilfsfunktion für Buffer-lokale Mappings
+
+        local bufnr = event.buf
+
         local map = function(mode, lhs, rhs, desc)
             vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
         end
@@ -70,7 +72,27 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("n", "gd", vim.lsp.buf.definition, "Go to Definition")
         map("n", "gr", vim.lsp.buf.references, "Go to References")
         map("n", "gi", vim.lsp.buf.implementation, "Go to Implementation")
-        map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
-        map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
+
+        -- Logic for hover
+        if vim.bo[bufnr].filetype == "rust" then
+            -- Your specific Rust override
+            map("n", "K", function()
+                vim.cmd.RustLsp({'hover', 'actions'})
+            end, "Rust: Hover")
+        else
+            -- The default for all other languages
+            map("n", "K", vim.lsp.buf.hover, "Hover")
+        end
+
+        -- Logic for Code Actions
+        if vim.bo[bufnr].filetype == "rust" then
+            -- Your specific Rust override
+            map("n", "<leader>ca", function()
+                vim.cmd.RustLsp('codeAction')
+            end, "Rust: Code Action")
+        else
+            -- The default for all other languages
+            map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
+        end
     end,
 })

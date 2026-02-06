@@ -6,7 +6,6 @@ vim.lsp.enable({
   "texlab",
   "pyright",
   "ts_ls",
-  "rust-analyzer",
   "ocamllsp",
   "yamlls",
 })

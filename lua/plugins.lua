@@ -19,6 +19,11 @@ vim.pack.add({
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/sindrets/diffview.nvim" },
     { src = "https://github.com/nvim-lua/plenary.nvim" },
+    { src = "https://github.com/mrcjkb/rustaceanvim" },
+    { src = "https://github.com/nvim-neotest/nvim-nio" },
+    { src = "https://github.com/antoinemadec/FixCursorHold.nvim" },
+    { src = "https://github.com/nvim-neotest/neotest" },
+    { src = "https://github.com/let-def/texpresso.vim" },
 })
 
 require('oil').setup()
@@ -26,13 +31,20 @@ require('gitsigns').setup({ signcolumn = false })
 require('mason').setup({
     ensure_installed = {
         "jdlts",
+        "texlab",
     }
 })
 require('autoclose').setup({})
 require('flash').setup()
 require('nvim-treesitter.configs').setup({
-    ensure_installed = { "lua", "go", "rust", "java" },
+    ensure_installed = { "lua", "go", "rust", "java", "latex" },
     highlight = { enable = true }
+})
+
+require('neotest').setup({
+    adapters = {
+        require('rustaceanvim.neotest')
+    }
 })
 
 require('blink.cmp').setup({
@@ -169,4 +181,18 @@ require("JustSyncNvimAdapter").setup({
     -- Just use global
     cmd_path = "JustSync",
     log_level = vim.log.levels.INFO
+})
+
+-- ### Texpresso
+local tex_aug = vim.api.nvim_create_augroup("TexpressoSetup", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+    group = tex_aug,
+    pattern = "tex",
+    callback = function(args)
+        -- Press <leader>tx to start the live preview for the current file
+        vim.keymap.set("n", "<leader>tx", "<cmd>TeXpresso %<CR>", { 
+            buffer = args.buf, 
+            desc = "Start Texpresso Live Preview" 
+        })
+    end
 })

@@ -35,4 +35,8 @@ keymap("n", "<leader>gH", "<cmd>DiffviewFileHistory<CR>", opts)
 keymap("n", "<leader>gs", '<cmd>Git<CR>', opts)
 keymap("n", "<leader>gp", '<cmd>Git push<CR>', opts)
 
+keymap("n", "<leader>tr", "<cmd>Neotest run<CR>", opts)
+keymap("n", "<leader>ts", "<cmd>Neotest summary<CR>")
+keymap("n", "<leader>to", "<cmd>Neotest output<CR>")
+
 keymap("n", "s", function() require("flash").jump() end)
