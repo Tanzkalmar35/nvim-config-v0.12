@@ -3,10 +3,11 @@ vim.lsp.enable({
   "bashls",
   "gopls",
   "lua_ls",
-  "texlab",
   "pyright",
+  "texlab",
   "ts_ls",
   "ocamllsp",
   "yamlls",
+  "zls"
 })
 vim.diagnostic.config({ virtual_text = true })

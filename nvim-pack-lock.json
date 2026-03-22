@@ -97,6 +97,10 @@
       "rev": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4",
       "src": "https://github.com/tpope/vim-fugitive"
     },
+    "vimtex": {
+      "rev": "82d2305ff71dfb3bd91602534cc9bb9a195bcb38",
+      "src": "https://github.com/lervag/vimtex"
+    },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
       "src": "https://github.com/folke/which-key.nvim"

@@ -29,4 +29,7 @@ vim.g.netrw_liststyle = 1 -- Use the long listing view
 vim.g.netrw_sort_by = "size" -- Sort files by file size
 
 vim.cmd.filetype("plugin indent on") -- Enable filetype detection, plugins, and indentation
-vim.cmd.colorscheme("nord")
+vim.cmd.colorscheme("catppuccin")
+
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
