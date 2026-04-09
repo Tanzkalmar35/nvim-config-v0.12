@@ -1,8 +1,12 @@
 vim.pack.add({
+    -- Own plugins
+    { src = "https://github.com/Tanzkalmar35/JustSyncNvimAdapter" },
+    { src = "https://github.com/Tanzkalmar35/ghostnotes" },
+
+    -- Externals
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/mason-org/mason.nvim" },
-    { src = "https://github.com/saghen/blink.cmp",                version = vim.version.range("^1") },
-    { src = "https://github.com/ellisonleao/gruvbox.nvim" },
+    { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1") },
     { src = "https://github.com/ibhagwan/fzf-lua" },
     { src = "https://github.com/tpope/vim-fugitive" },
     { src = "https://github.com/m4xshen/autoclose.nvim" },
@@ -13,21 +17,44 @@ vim.pack.add({
     { src = "https://github.com/kkoomen/vim-doge" },
     { src = "https://github.com/kevinhwang91/nvim-ufo" },
     { src = "https://github.com/kevinhwang91/promise-async" },
-    { src = "https://github.com/Kicamon/markdown-table-mode.nvim" },
+    { src = "https://github.com/folke/which-key.nvim" },
+    { src = "https://github.com/stevearc/oil.nvim" },
+    { src = "https://github.com/sindrets/diffview.nvim" },
+    { src = "https://github.com/nvim-lua/plenary.nvim" },
+    { src = "https://github.com/mrcjkb/rustaceanvim" },
+    { src = "https://github.com/nvim-neotest/nvim-nio" },
+    { src = "https://github.com/antoinemadec/FixCursorHold.nvim" },
+    { src = "https://github.com/nvim-neotest/neotest" },
+    { src = "https://github.com/lervag/vimtex" },
+    { src = "https://github.com/catppuccin/nvim" },
+    { src = "https://github.com/rcarriga/nvim-notify" },
 })
 
+-- ### VimTeX config
+vim.g.vimtex_view_method = 'zathura'
+vim.g.vimtex_compiler_method = 'latexmk'
+
+require('ghostnotes').setup()
+require('oil').setup()
 require('gitsigns').setup({ signcolumn = false })
 require('mason').setup({
     ensure_installed = {
         "jdlts",
+        "texlab",
     }
 })
 require('autoclose').setup({})
 require('flash').setup()
 require('markdown-table-mode').setup()
 require('nvim-treesitter.configs').setup({
-    ensure_installed = { "lua", "go", "rust", "java" },
+    ensure_installed = { "lua", "go", "rust", "java", "latex", "bibtex" },
     highlight = { enable = true }
+})
+
+require('neotest').setup({
+    adapters = {
+        require('rustaceanvim.neotest')
+    }
 })
 
 require('blink.cmp').setup({
@@ -150,8 +177,31 @@ vim.o.foldenable = true
 vim.keymap.set("n", "zR", require("ufo").openAllFolds)
 vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 
+-- UFO setup
 require("ufo").setup({
+    -- Tell UFO to use treesitter folds
     provider_selector = function(bufnr, filetype, buftype)
         return { "treesitter", "indent" }
     end
 })
+
+-- ### JustSync config
+
+require("JustSyncNvimAdapter").setup({
+    -- Just use global
+    cmd_path = "JustSync",
+    log_level = vim.log.levels.INFO
+})
+
+-- ### Vim.notify
+
+local notify = require("notify")
+notify.setup({
+    stages = "fade",    -- Smooth fading animation ('fade', 'slide', 'static')
+    timeout = 1000,     -- Milliseconds before it disappears
+    render = "minimal", -- Clean look without heavy borders
+    top_down = true,    -- Set to true if you want them to stack from the top
+    background_colour = "#000000",
+})
+
+vim.notify = notify
