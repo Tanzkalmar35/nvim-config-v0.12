@@ -1,9 +1,12 @@
 vim.pack.add({
+    -- Own plugins
+    { src = "https://github.com/Tanzkalmar35/JustSyncNvimAdapter" },
+    { src = "https://github.com/Tanzkalmar35/ghostnotes" },
+
+    -- Externals
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/mason-org/mason.nvim" },
-    { src = "https://github.com/saghen/blink.cmp",                version = vim.version.range("^1") },
-    { src = "https://github.com/ellisonleao/gruvbox.nvim" },
-    { src = "https://github.com/shaunsingh/nord.nvim" },
+    { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1") },
     { src = "https://github.com/ibhagwan/fzf-lua" },
     { src = "https://github.com/tpope/vim-fugitive" },
     { src = "https://github.com/m4xshen/autoclose.nvim" },
@@ -15,7 +18,6 @@ vim.pack.add({
     { src = "https://github.com/kevinhwang91/nvim-ufo" },
     { src = "https://github.com/kevinhwang91/promise-async" },
     { src = "https://github.com/folke/which-key.nvim" },
-    { src = "https://github.com/Tanzkalmar35/JustSyncNvimAdapter" },
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/sindrets/diffview.nvim" },
     { src = "https://github.com/nvim-lua/plenary.nvim" },
@@ -24,12 +26,15 @@ vim.pack.add({
     { src = "https://github.com/antoinemadec/FixCursorHold.nvim" },
     { src = "https://github.com/nvim-neotest/neotest" },
     { src = "https://github.com/lervag/vimtex" },
+    { src = "https://github.com/catppuccin/nvim" },
+    { src = "https://github.com/rcarriga/nvim-notify" },
 })
 
 -- ### VimTeX config
 vim.g.vimtex_view_method = 'zathura'
 vim.g.vimtex_compiler_method = 'latexmk'
 
+require('ghostnotes').setup()
 require('oil').setup()
 require('gitsigns').setup({ signcolumn = false })
 require('mason').setup({
@@ -186,3 +191,16 @@ require("JustSyncNvimAdapter").setup({
     cmd_path = "JustSync",
     log_level = vim.log.levels.INFO
 })
+
+-- ### Vim.notify
+
+local notify = require("notify")
+notify.setup({
+    stages = "fade",    -- Smooth fading animation ('fade', 'slide', 'static')
+    timeout = 1000,     -- Milliseconds before it disappears
+    render = "minimal", -- Clean look without heavy borders
+    top_down = true,    -- Set to true if you want them to stack from the top
+    background_colour = "#000000",
+})
+
+vim.notify = notify
