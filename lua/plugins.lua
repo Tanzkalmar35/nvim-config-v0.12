@@ -28,6 +28,7 @@ vim.pack.add({
     { src = "https://github.com/lervag/vimtex" },
     { src = "https://github.com/catppuccin/nvim" },
     { src = "https://github.com/rcarriga/nvim-notify" },
+    { src = "https://github.com/Kicamon/markdown-table-mode.nvim" },
 })
 
 -- ### VimTeX config
